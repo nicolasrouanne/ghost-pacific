@@ -1,0 +1,31 @@
+{
+    "name": "pacific",
+    "description": "Grid-based photoblog theme",
+    "version": "2.1.0",
+	"keywords": ["ghost-theme"],
+    "engines": {
+        "ghost": ">=3.0.0",
+		"ghost-api": "v3"
+    },
+    "license": "MIT",
+    "author": {
+        "email": "support@heybi.com"
+    },
+    "config": {
+        "posts_per_page": 7,
+		"image_sizes": {
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        }
+    }
+}

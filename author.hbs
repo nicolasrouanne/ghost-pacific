@@ -1,0 +1,71 @@
+{{!< default}}
+
+<header class="header-outer">
+	<div class="header-inner container" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+		{{#if @site.logo}}
+			<h1 class="site-title title"><a class="site-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a></h1>
+		{{else}}
+			<h1 class="site-title title"><a title="{{@site.title}}" href="{{@site.url}}" itemprop="headline">{{{@site.title}}}</a></h1>
+			<p class="site-description" itemprop="description">{{@site.description}}</p>
+		{{/if}}
+	</div>
+	{{> memberpanel}}
+</header>
+
+<div class="main-outer" id="homepage">
+	{{#author}}
+	<aside class="search-term text-center">
+		<p>{{plural ../pagination.total empty='No post' singular='% post' plural='% posts'}} written by</p>
+		<h2 class="title">{{name}}</h2>
+	</aside>
+	{{/author}}
+
+	<main class="main-inner clearfix">
+	{{#foreach posts visibility="all"}}
+		<article id="post-{{id}}" class="{{post_class}} clearfix" itemscope itemtype="http://schema.org/BlogPosting">
+			<div class="post-cover" itemprop="image" content="{{img_url feature_image}}">
+				<ul class="post-header">
+					<li class="section post-title" itemprop="name">
+						<h2 class="title">
+							<a rel="bookmark" href="{{{url}}}">{{title}}</a>
+						</h2>
+					</li>
+					<li class="post-meta">
+						{{#if @labs.members}}
+							{{#unless access}}
+								<span class="post-mark-{{ visibility }}">
+									<span class="meta-member mark-member">Member</span>
+									<span class="meta-member mark-paid">Paid</span>
+								</span>
+							{{/unless}}
+						{{/if}}
+						<span class="meta-date">{{date format='MMM Do, YYYY'}}</span>
+						{{#primary_tag}}
+						<span class="meta-divider">•</span>
+						<span class="meta-label"><a href="{{url}}">{{name}}</a></span>
+						{{/primary_tag}}
+					</li>
+				</ul>
+			</div>
+
+			{{! Dynamically load image size }}
+			<style>
+				#post-{{id}} .post-cover {
+					background-image: url({{img_url feature_image size="l"}});
+				}
+				#post-{{id}}:nth-child(3n - 5) .post-cover {
+					background-image: url({{img_url feature_image size="xl"}});
+				}
+				@media screen and (max-width: 640px) {
+					#post-{{id}} .post-cover,
+					#post-{{id}}:nth-child(3n - 5) .post-cover {
+						background-image: url({{img_url feature_image size="m"}});
+					}
+				}
+			</style>
+		</article>
+	{{/foreach}}
+	</main>
+
+	<div class="pagination-outer">{{{pagination}}}</div>
+</div>

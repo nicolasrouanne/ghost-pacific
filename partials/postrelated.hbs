@@ -1,0 +1,40 @@
+<div class="post-related-outer">
+	<h3 style="text-align: center;">Read next...</h3>
+	<div class="post-related">
+	{{#get "posts" limit="2" filter="id:-{{id}}+tag:{{primary_tag.slug}}"}}
+		{{#foreach posts visibility="all"}}
+		<div id="postrelated-{{id}}" class="post-related-item" itemscope itemtype="http://schema.org/BlogPosting">
+			<div class="post-cover{{^if feature_image}} no-cover{{/if}}" itemprop="image" content="{{img_url feature_image}}">
+				<ul class="post-header">
+					<li class="section post-title" itemprop="name">
+						<h2 class="title">
+							<a rel="bookmark" href="{{{url}}}">{{title}}</a>
+						</h2>
+					</li>
+					<li class="post-meta">
+						{{#if @labs.members}}{{#unless access}}<span class="meta-member">Member</span>{{/unless}}{{/if}}
+						<span class="meta-date">{{date format='MMM Do, YYYY'}}</span>
+					</li>
+				</ul>
+			</div>
+
+			{{!-- Dynamically load image size --}}
+			<style>
+				#postrelated-{{id}} .post-cover {
+					background-image: url({{img_url feature_image size="l"}});
+				}
+				#postrelated-{{id}}:nth-child(3n - 5) .post-cover {
+					background-image: url({{img_url feature_image size="xl"}});
+				}
+				@media screen and (max-width: 640px) {
+					#postrelated-{{id}} .post-cover,
+					#postrelated-{{id}}:nth-child(3n - 5) .post-cover {
+						background-image: url({{img_url feature_image size="m"}});
+					}
+				}
+			</style>
+		</div>
+		{{/foreach}}
+	{{/get}}
+	</div>
+</div>

@@ -1,0 +1,53 @@
+{{!< default}}
+
+<header class="header-outer">
+	<div class="header-inner container" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+		{{#if @site.logo}}
+			<h2 class="site-title title"><a class="site-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a></h2>
+		{{else}}
+			<h2 class="site-title title"><a title="{{@site.title}}" href="{{@site.url}}" itemprop="headline">{{{@site.title}}}</a></h2>
+			<p class="site-description" itemprop="description">{{@site.description}}</p>
+		{{/if}}
+	</div>
+	{{> memberpanel}}
+</header>
+
+<div class="main-outer" id="singlepage">
+	<main class="main-inner clearfix">
+	{{#post}}
+		<article class="{{post_class}}" itemscope itemtype="http://schema.org/BlogPosting">
+			<ul class="post-header">
+				<li class="section post-title" itemprop="name">
+					<h1 class="title">
+						{{title}}
+					</h1>
+				</li>
+				<li class="post-meta">
+					<span class="meta-date">{{date format='MMM Do, YYYY'}}</span>
+				</li>
+				{{#if custom_excerpt}}
+				<li class="post-full-custom-excerpt">
+					<p>{{custom_excerpt}}</p>
+				</li>
+				{{/if}}
+			</ul>
+
+			{{#if feature_image}}
+			<div class="post-cover">
+				<img src="{{img_url feature_image}}">
+			</div>
+			{{/if}}
+
+			<section class="section post-body" itemprop="articleBody">
+				{{content}}
+			</section>
+
+			<footer class="post-footer">
+				<div class="post-footer-line-1">
+					{{> sharing}}
+				</div>
+			</footer>
+		</article>
+	{{/post}}
+	</main>
+</div>

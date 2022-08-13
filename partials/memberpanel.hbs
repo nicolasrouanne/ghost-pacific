@@ -1,0 +1,48 @@
+<div class="overlay-panel menu-overlay">
+	<div class="icon-nav overlay-trigger">
+		<i class="material-icons">menu</i> <span>Menu</span>
+	</div>
+	<aside class="overlay overlay-trigger">
+		<nav class="nav-outer">
+			<div class="icon-nav">
+				<a class="close overlay-trigger">
+					<i class="material-icons">close</i>
+					Close
+				</a>
+			</div>
+
+			<div class="nav-inner">
+				{{navigation}}
+			</div>
+		</nav>
+	</aside>
+</div>
+
+{{#if @labs.members}}
+	<div class="subscribe-overlay">
+		<div class="icon-nav">
+			{{#if @member}}
+				<span class="member-singin"><a href="javascript:" data-members-signout>Sign out</a></span>
+				<span class="member-signup"><a href="{{@site.url}}/account">Account</a></span>
+				<i class="material-icons">login</i>
+			{{else}}
+				<span class="member-singin"><a href="{{@site.url}}/signin">Sign in</a></span>
+				<span class="member-signup"><a href="{{@site.url}}/signup">Subscribe</a></span>
+				<i class="material-icons">mail_outline</i>
+			{{/if}}
+		</div>
+	</div>
+{{else}}
+	<ul class="icon-header-social">
+		{{#if @site.twitter}}
+		<li class="nav-social nav-social-tw">
+			<a class="social-link social-link-tw" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a>
+		</li>
+		{{/if}}
+		{{#if @site.facebook}}
+		<li class="nav-social nav-social-fb">
+			<a class="social-link social-link-fb" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a>
+		</li>
+		{{/if}}
+	</ul>
+{{/if}}

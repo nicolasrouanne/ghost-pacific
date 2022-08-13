@@ -1,0 +1,20 @@
+<ul class="nav">
+    <!-- Loop through the navigation items -->
+    {{#foreach navigation}}
+    <li class="nav-{{slug}}{{#if current}} nav-current{{/if}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+    {{/foreach}}
+    <!-- End the loop -->
+
+	{{#if @labs.members}}
+		{{#if @site.facebook}}
+		<li class="nav-social nav-social-fb">
+			<a class="social-link social-link-fb" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">Facebook</a>
+		</li>
+		{{/if}}
+		{{#if @site.twitter}}
+		<li class="nav-social nav-social-tw">
+			<a class="social-link social-link-tw" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a>
+		</li>
+		{{/if}}
+	{{/if}}
+</ul>

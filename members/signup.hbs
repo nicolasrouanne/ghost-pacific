@@ -1,0 +1,97 @@
+{{!< ../default}}
+
+<header class="header-outer">
+	<div class="header-inner container" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+		{{#if @site.logo}}
+			<h2 class="site-title title"><a class="site-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a></h2>
+		{{else}}
+			<h2 class="site-title title"><a title="{{@site.title}}" href="{{@site.url}}" itemprop="headline">{{{@site.title}}}</a></h2>
+			<p class="site-description" itemprop="description">{{@site.description}}</p>
+		{{/if}}
+	</div>
+	{{> memberpanel}}
+</header>
+
+<div class="main-outer site-signup" id="memberpage">
+	<main class="main-inner clearfix">
+		<article class="post">
+			<section class="section container-center container-small">
+				{{#if @member.paid}}
+
+			        {{!-- Logged in, paying member: Redirect home --}}
+			        <script>window.location = '{{@site.url}}';</script>
+
+			    {{else if @member}}
+
+			        {{!-- Logged in, not paying: Check out --}}
+			        <div class="checkout-form pb-medium">
+						<header class="text-center mb-medium">
+				            <h1 class="checkout-title">Choose your subscription</h1>
+				            <p class="font-medium">Unlock full access to {{@site.title}} and see the entire library of premium content & updates</p>
+						</header>
+			            <div class="checkout-box col-grid col-grid-onehalf">
+			                <div class="col-grid-item d-flex checkout-plan">
+								<div class="inner bg-secondary">
+				                    <header class="checkout-plan-header">
+				                        <h4>Monthly</h4>
+				                        <strong class="font-big text-tertiary">{{@price.currency_symbol}}{{@price.monthly}}</strong>
+										<span class="text-secondary">/ month</span>
+				                    </header>
+				                    <div class="checkout-plan-content">
+				                        <ul class="font-small">
+				                            <li>Full access to all private posts</li>
+				                            <li>Regular updates with new content</li>
+				                            <li>Support independent publishing</li>
+				                            <li>Simple, secure card payment</li>
+				                        </ul>
+				                        <a class="button primary fit" href="javascript:" data-members-plan="Monthly">Choose this plan</a>
+				                    </div>
+								</div>
+			                </div>
+			                <div class="col-grid-item d-flex checkout-plan">
+								<div class="inner bg-secondary">
+				                    <header class="checkout-plan-header">
+				                        <h4>Yearly</h4>
+				                        <strong class="font-big text-tertiary">{{@price.currency_symbol}}{{@price.yearly}}</strong>
+										<span class="text-secondary"> / year</span>
+				                    </header>
+				                    <div class="checkout-plan-content">
+				                        <ul class="font-small">
+				                            <li>Full access to all private posts</li>
+				                            <li>Regular updates with new content</li>
+				                            <li>Support independent publishing</li>
+				                            <li>Simple, secure card payment</li>
+				                            <li>One easy payment instead of 12!</li>
+				                        </ul>
+				                        <a class="button primary fit" href="javascript:" data-members-plan="Yearly">Choose this plan</a>
+				                    </div>
+								</div>
+			                </div>
+			            </div>
+			        </div>
+
+			    {{else}}
+
+			        {{!-- Not logged in: Sign up --}}
+					<div class="member-form text-center mb-big">
+					    <h1 class="title widget-title mb-small">Signup to {{@site.title}}</h1>
+					    <p>{{@site.description}}</p>
+				        <form class="signup-form my-regular" data-members-form="signup">
+				           <div class="signup-box form-input">
+				                <input class="subscribe-email" data-members-email type="email" placeholder="Type your email..." required="true" autocomplete="false" />
+				                <button class="button primary" type="submit">
+				                    <span class="button-content">Continue</span>
+				                    <span class="hide button-loader">{{> "loader"}}</span>
+				                </button>
+				            </div>
+				            <div class="hide message message-success"><strong>Great!</strong> Check your inbox and click the link to confirm your subscription</div>
+				            <div class="hide message message-error">Please enter a valid email address!</div>
+				        </form>
+						<p><small>Already have an account? <a href="{{@site.url}}/signin/">Sign in</a></small></p>
+					</div>
+
+			    {{/if}}
+			</section>
+		</article>
+	</main>
+</div>

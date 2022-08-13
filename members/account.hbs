@@ -1,0 +1,115 @@
+{{!< ../default}}
+
+<header class="header-outer">
+	<div class="header-inner container" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+		{{#if @site.logo}}
+			<h2 class="site-title title"><a class="site-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a></h2>
+		{{else}}
+			<h2 class="site-title title"><a title="{{@site.title}}" href="{{@site.url}}" itemprop="headline">{{{@site.title}}}</a></h2>
+			<p class="site-description" itemprop="description">{{@site.description}}</p>
+		{{/if}}
+	</div>
+	{{> memberpanel}}
+</header>
+
+<div class="main-outer site-account" id="memberpage">
+	<main class="main-inner clearfix">
+		<article class="post">
+			<section class="section container-center container-small">
+				{{#if @member.paid}}
+
+			        {{!-- Logged in, paying member: Show account info --}}
+			        <div class="subscriber-box my-medium"">
+
+			            {{#foreach @member.subscriptions}}
+			                <div class="subscription">
+			                    <div class="subscriber-header text-center">
+			                        <div class="subscription-title">
+			                            {{#if @first}}
+			                                <h1>Your account</h1>
+			                            {{/if}}
+			                            {{#if cancel_at_period_end}}
+			                                <p>
+			                                    <strong class="subscription-expiration-warning">Your subscription will expire on {{date current_period_end format="DD MMM YYYY"}}.</strong> If you change your mind in the meantime you can turn auto-renew back on to continue your subscription.
+			                                </p>
+			                            {{else}}
+			                                <p>
+			                                    Hey! You have an active <strong>{{@site.title}}</strong> account with access to all areas. Get in touch if have any problems or need some help getting things updated, and thanks for subscribing.
+			                                </p>
+			                            {{/if}}
+			                        </div>
+			                        {{#if @first}}
+										<div class="subscriber-avatar">
+											{{#if @member.avatar_image}}
+												<figure style="background-image: url({{@member.avatar_image}});"></figure>
+											{{/if}}
+										</div>
+			                        {{/if}}
+			                    </div>
+			                    <div class="subscriber-details bg-tertiary mt-regular py-regular px-regular">
+			                        <div class="subscriber-detail">
+			                            <label class="subscriber-detail-label">Email address</label>
+			                            <span class="subscriber-detail-content">{{@member.email}}</span>
+			                        </div>
+
+			                        <div class="subscriber-detail">
+			                            <label class="subscriber-detail-label">Your plan</label>
+			                                <span class="subscriber-detail-content">{{plan.currency_symbol}}{{price plan.amount}}/{{plan.interval}}</span>
+			                        </div>
+
+			                        <div class="subscriber-detail">
+			                            <label class="subscriber-detail-label">Card</label>
+			                            <span class="subscriber-detail-content">**** **** **** {{default_payment_card_last4}}</span>
+			                        </div>
+
+			                        <div class="subscriber-detail">
+			                            <label class="subscriber-detail-label">
+			                                {{#if cancel_at_period_end}}
+			                                    Expires
+			                                {{else}}
+			                                    Next bill date
+			                                {{/if}}
+			                            </label>
+			                            <span class="subscriber-detail-content">{{date current_period_end format="DD MMM YYYY"}}</span>
+			                        </div>
+			                    </div>
+
+			                    <ul class="subscription-actions mt-regular font-small">
+			                        <li><a href="javascript:"
+			                                data-members-edit-billing
+			                                data-members-success="{{@site.url}}/account/?stripe=billing-update-success"
+			                                data-members-cancel="{{@site.url}}/account/?stripe=billing-update-cancel">Edit billing info</a></li>
+			                        <li>{{cancel_link}}</li>
+			                    </ul>
+			                </div>
+			            {{/foreach}}
+			        </div>
+
+			    {{else if @member}}
+
+			        {{!-- Logged in, not paying: Link to checkout --}}
+			        <div class="account-box text-center pb-big mt-medium">
+			            <div class="subscriber-avatar">
+			                {{#if @member.avatar_image}}
+			                    <figure style="background-image: url({{@member.avatar_image}});"></figure>
+			                {{/if}}
+			            </div>
+			            <h1 class="account-box-title">Subscriber</h1>
+			            <p class="mb-regular">Your account grants you access to free content for subscriber. Upgrade to see the entire library of paid content.</p>
+			            <div class="authbox-signup">
+			                <a class="button primary" href="{{@site.url}}/signup/">
+			                    Upgrade now
+			                </a>
+			            </div>
+			        </div>
+
+			    {{else}}
+
+			        {{!-- Not logged in: Redirect to signin --}}
+			        <script>window.location = '{{@site.url}}/signin/';</script>
+
+			    {{/if}}
+			</section>
+		</article>
+	</main>
+</div>

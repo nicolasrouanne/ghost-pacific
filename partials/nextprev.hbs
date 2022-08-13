@@ -1,0 +1,37 @@
+<div class="blogpager-outer container-medium">
+	<ul class="blogpager-inner">
+		{{#prev_post}}
+		<li class="blogpager-prev">
+			<div class="blogpager-content">
+				{{#if feature_image}}
+					<a href="{{url}}" class="cover" style="background-image: url({{img_url feature_image size="s"}});"></a>
+				{{/if}}
+				<h5 class="title">
+					<span>Older</span>
+					<a href="{{url}}">{{title}}</a>
+				</h5>
+			</div>
+			<span class="blogpager-icon icon-left">
+				<i class="material-icons">keyboard_arrow_left</i>
+			</span>
+		</li>
+		{{/prev_post}}
+
+		{{#next_post}}
+		<li class="blogpager-next">
+			<div class="blogpager-content">
+				<h5 class="title">
+					<span>Newer</span>
+					<a href="{{url}}">{{title}}</a>
+				</h5>
+				{{#if feature_image}}
+					<a href="{{url}}" class="cover" style="background-image: url({{img_url feature_image size="s"}});"></a>
+				{{/if}}
+			</div>
+			<span class="blogpager-icon icon-right">
+				<i class="material-icons">keyboard_arrow_right</i>
+			</span>
+		</li>
+		{{/next_post}}
+	</ul>
+</div>

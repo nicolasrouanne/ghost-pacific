@@ -1,0 +1,93 @@
+{{!< default}}
+
+<header class="header-outer">
+	<div class="header-inner container" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+		{{#if @site.logo}}
+			<h2 class="site-title title"><a class="site-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a></h2>
+		{{else}}
+			<h2 class="site-title title"><a title="{{@site.title}}" href="{{@site.url}}" itemprop="headline">{{{@site.title}}}</a></h2>
+			<p class="site-description" itemprop="description">{{@site.description}}</p>
+		{{/if}}
+	</div>
+	{{> memberpanel}}
+</header>
+
+<div class="main-outer" id="singlepage">
+	<main class="main-inner">
+	{{#post}}
+		<article class="{{post_class}}" itemscope itemtype="http://schema.org/BlogPosting">
+			<ul class="post-header">
+				<li class="section post-title" itemprop="name">
+					<h1 class="title">
+						{{title}}
+					</h1>
+				</li>
+				<li class="post-meta">
+					<span class="meta-date">{{date format='MMM Do, YYYY'}}</span>
+					<span class="meta-divider">•</span>
+					<span class="meta-label">{{#if tags}}{{tags separator=", "}}{{else}}Uncategorized{{/if}}</span>
+				</li>
+			</ul>
+
+			{{#if custom_excerpt}}
+			<div class="post-full-custom-excerpt">
+				<p>{{custom_excerpt}}</p>
+			</div>
+			{{/if}}
+
+			{{#if feature_image}}
+			<div class="post-cover">
+				<img src="{{img_url feature_image}}">
+			</div>
+			{{/if}}
+
+			{{#if access}}
+				<section class="section post-body" itemprop="articleBody">
+					{{content}}
+				</section>
+
+				<footer class="post-footer">
+					<div class="post-footer-line-1">
+						{{> sharing}}
+					</div>
+					<div class="post-footer-line-2">
+						{{#foreach authors}}
+						<div class="post-author">
+							<div class="post-author-img">
+								{{#if profile_image}}
+									<a href="{{url}}"><figure class="has-img" style="background: url({{profile_image}}) no-repeat center center; background-size: cover;"></figure></a>
+								{{else}}
+									<figure class="hasno-img"></figure>
+								{{/if}}
+							</div>
+							<div class="post-author-bio">
+								<h5><a href="{{url}}">{{name}}</a></h5>
+								<p class="bio small">{{bio}}</p>
+							</div>
+						</div>
+						{{/foreach}}
+					</div>
+				</footer>
+
+				{{> disqus}}
+			{{else}}
+				<div class="member-only-content bg-secondary mt-medium">
+					<section class="member-form text-center py-regular px-regular">
+						<h4 class="title widget-title">
+							This post is for subscribers only
+						</h4>
+						<a class="my-small button" href="{{@site.url}}/signup">Subscribe now</a>
+						<p>
+							<small>Already have an account? <a href="{{@site.url}}/signin/">Sign in</a></small>
+						</p>
+					</section>
+				</div>
+			{{/if}}
+		</article>
+
+		{{> postrelated}}
+
+		{{> nextprev}}
+	{{/post}}
+	</main>
+</div>
