@@ -30,43 +30,51 @@
 				            <p class="font-medium">Unlock full access to {{@site.title}} and see the entire library of premium content & updates</p>
 						</header>
 			            <div class="checkout-box col-grid col-grid-onehalf">
-			                <div class="col-grid-item d-flex checkout-plan">
-								<div class="inner bg-secondary">
-				                    <header class="checkout-plan-header">
-				                        <h4>Monthly</h4>
-				                        <strong class="font-big text-tertiary">{{@price.currency_symbol}}{{@price.monthly}}</strong>
-										<span class="text-secondary">/ month</span>
-				                    </header>
-				                    <div class="checkout-plan-content">
-				                        <ul class="font-small">
-				                            <li>Full access to all private posts</li>
-				                            <li>Regular updates with new content</li>
-				                            <li>Support independent publishing</li>
-				                            <li>Simple, secure card payment</li>
-				                        </ul>
-				                        <a class="button primary fit" href="javascript:" data-members-plan="Monthly">Choose this plan</a>
-				                    </div>
-								</div>
-			                </div>
-			                <div class="col-grid-item d-flex checkout-plan">
-								<div class="inner bg-secondary">
-				                    <header class="checkout-plan-header">
-				                        <h4>Yearly</h4>
-				                        <strong class="font-big text-tertiary">{{@price.currency_symbol}}{{@price.yearly}}</strong>
-										<span class="text-secondary"> / year</span>
-				                    </header>
-				                    <div class="checkout-plan-content">
-				                        <ul class="font-small">
-				                            <li>Full access to all private posts</li>
-				                            <li>Regular updates with new content</li>
-				                            <li>Support independent publishing</li>
-				                            <li>Simple, secure card payment</li>
-				                            <li>One easy payment instead of 12!</li>
-				                        </ul>
-				                        <a class="button primary fit" href="javascript:" data-members-plan="Yearly">Choose this plan</a>
-				                    </div>
-								</div>
-			                </div>
+							{{#get "tiers" include="monthly_price,yearly_price" limit="all" as |tiers|}}
+							 	{{#foreach tiers}}
+        							{{#if monthly_price}}
+										<div class="col-grid-item d-flex checkout-plan">
+											<div class="inner bg-secondary">
+												<header class="checkout-plan-header">
+													<h4>Monthly</h4>
+													<strong class="font-big text-tertiary">{{price monthly_price currency=currency}}</strong>
+													<span class="text-secondary">/ month</span>
+												</header>
+												<div class="checkout-plan-content">
+													<ul class="font-small">
+														<li>Full access to all private posts</li>
+														<li>Regular updates with new content</li>
+														<li>Support independent publishing</li>
+														<li>Simple, secure card payment</li>
+													</ul>
+													<a class="button primary fit" href="javascript:" data-members-plan="Monthly">Choose this plan</a>
+												</div>
+											</div>
+										</div>
+									{{/if}}
+									{{#if yearly_price}}
+										<div class="col-grid-item d-flex checkout-plan">
+											<div class="inner bg-secondary">
+												<header class="checkout-plan-header">
+													<h4>Yearly</h4>
+													<strong class="font-big text-tertiary">{{price yearly_price currency=currency}}</strong>
+													<span class="text-secondary"> / year</span>
+												</header>
+												<div class="checkout-plan-content">
+													<ul class="font-small">
+														<li>Full access to all private posts</li>
+														<li>Regular updates with new content</li>
+														<li>Support independent publishing</li>
+														<li>Simple, secure card payment</li>
+														<li>One easy payment instead of 12!</li>
+													</ul>
+													<a class="button primary fit" href="javascript:" data-members-plan="Yearly">Choose this plan</a>
+												</div>
+											</div>
+										</div>
+									{{/if}}
+								{{/foreach}}
+							{{/get}}
 			            </div>
 			        </div>
 
