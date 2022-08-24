@@ -1,11 +1,10 @@
 {
     "name": "pacific",
     "description": "Grid-based photoblog theme",
-    "version": "2.1.0",
+    "version": "3.0.0",
 	"keywords": ["ghost-theme"],
     "engines": {
-        "ghost": ">=3.0.0",
-		"ghost-api": "v3"
+        "ghost": ">=5.0.0"
     },
     "license": "MIT",
     "author": {
