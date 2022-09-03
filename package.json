@@ -12,6 +12,9 @@
     "author": {
         "email": "support@heybi.com"
     },
+    "scripts": {
+        "format": "prettier . --write"
+      },
     "config": {
         "posts_per_page": 7,
         "image_sizes": {
