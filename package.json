@@ -1,38 +1,38 @@
 {
-    "name": "pacific",
-    "description": "Grid-based photoblog theme",
-    "version": "3.0.0",
-    "keywords": [
-        "ghost-theme"
-    ],
-    "engines": {
-        "ghost": ">=5.0.0"
-    },
-    "license": "MIT",
-    "author": {
-        "email": "support@heybi.com"
-    },
-    "scripts": {
-        "format": "prettier . --write"
+  "name": "pacific",
+  "description": "Grid-based photoblog theme",
+  "version": "3.0.0",
+  "keywords": [
+    "ghost-theme"
+  ],
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "license": "MIT",
+  "author": {
+    "email": "support@heybi.com"
+  },
+  "scripts": {
+    "format": "prettier . --write"
+  },
+  "config": {
+    "posts_per_page": 7,
+    "image_sizes": {
+      "s": {
+        "width": 300
       },
-    "config": {
-        "posts_per_page": 7,
-        "image_sizes": {
-            "s": {
-                "width": 300
-            },
-            "m": {
-                "width": 600
-            },
-            "l": {
-                "width": 1000
-            },
-            "xl": {
-                "width": 2000
-            }
-        }
-    },
-    "devDependencies": {
-        "prettier": "^2.7.1"
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1000
+      },
+      "xl": {
+        "width": 2000
+      }
     }
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
 }
