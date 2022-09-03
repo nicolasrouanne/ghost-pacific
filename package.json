@@ -2,7 +2,9 @@
     "name": "pacific",
     "description": "Grid-based photoblog theme",
     "version": "3.0.0",
-	"keywords": ["ghost-theme"],
+    "keywords": [
+        "ghost-theme"
+    ],
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -12,7 +14,7 @@
     },
     "config": {
         "posts_per_page": 7,
-		"image_sizes": {
+        "image_sizes": {
             "s": {
                 "width": 300
             },
@@ -26,5 +28,8 @@
                 "width": 2000
             }
         }
+    },
+    "devDependencies": {
+        "prettier": "^2.7.1"
     }
 }
