@@ -1,0 +1,17 @@
+node_modules
+
+# ignore files containing handlebar partials, because they are not yet supported by prettier
+# https://github.com/prettier/prettier/issues/11834
+partials/navigation.hbs
+partials/postrelated.hbs
+author.hbs
+custom-basic.hbs
+custom-full-bleed.hbs
+default.hbs
+index.hbs
+page.hbs
+post.hbs
+tag.hbs
+members/account.hbs
+members/signin.hbs
+members/signup.hbs
